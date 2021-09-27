@@ -43,9 +43,9 @@ replace (x,y) n board =
                     row2 = take 3 $ drop 3 board
                     row3 = take 3 $ drop 6 board
                 in [row1,row2,row3]
-            changeValue value newValue list
+            changeValue value newValue list     --change 'value' to newValue in a list
                 | first == [] = foldr (:) [newValue] $ init second
-                | otherwise = (foldr (:) [newValue] (init first)) ++ second    --change 'value' to 'newValue' in a list
+                | otherwise = (foldr (:) [newValue] (init first)) ++ second
                     where tuple = splitAt value list
                           first = fst tuple
                           second = snd tuple
