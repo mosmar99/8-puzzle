@@ -33,5 +33,19 @@ findEmpty board
               xPos = rem index 3 --similar method for yPos??
 
 --Task 5
-replace :: Position -> Int -> Board -> Board
-replace pos n board
+replace :: Position -> Int -> Board -> Board    --tested
+replace (x,y) n board =
+    let flatBoard = concat board
+    in reverseConcat (changeValue (flatBoard !! (x + 3 * y)) n flatBoard)
+        where 
+            reverseConcat board =   --reverse the effect of concat
+                let row1 = take 3 board
+                    row2 = take 3 $ drop 3 board
+                    row3 = take 3 $ drop 6 board
+                in [row1,row2,row3]
+            changeValue value newValue list
+                | first == [] = foldr (:) [newValue] $ init second
+                | otherwise = (foldr (:) [newValue] (init first)) ++ second     --change 'value' to 'newValue' in a list
+                    where tuple = splitAt value list
+                          first = fst tuple
+                          second = snd tuple
