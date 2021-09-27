@@ -3,7 +3,7 @@ import Data.Maybe
 
 type Board = [[Int]]
 type Position = (Int,Int) -- (x,y)
---type State = (Board,) ??
+type State = (Board,[Action])
 
 {-  Create instance of class "Action", using Eq typeclass, with 4 memberfunctions each
     using the 'show' function to display a string depending on which function is called-}
