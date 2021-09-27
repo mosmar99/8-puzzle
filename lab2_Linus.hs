@@ -45,7 +45,7 @@ replace (x,y) n board =
                 in [row1,row2,row3]
             changeValue value newValue list
                 | first == [] = foldr (:) [newValue] $ init second
-                | otherwise = (foldr (:) [newValue] (init first)) ++ second     --change 'value' to 'newValue' in a list
+                | otherwise = (foldr (:) [newValue] (init first)) ++ second    --change 'value' to 'newValue' in a list
                     where tuple = splitAt value list
                           first = fst tuple
                           second = snd tuple
