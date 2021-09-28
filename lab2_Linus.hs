@@ -5,9 +5,10 @@ type Board = [[Int]]
 type Position = (Int,Int) -- (x,y)
 type State = (Board,[Action])
 
-{-  Create instance of class "Action", using Eq typeclass, with 4 memberfunctions each
-    using the 'show' function to display a string depending on which function is called-}
+{-  Custom data type 'Action' which can be either L, U, R or D, using Eq typeclass to print
+    their respective values using 'show'-}
 data Action = L | U | R | D deriving Eq
+--  Create instance of 'Action' and defining the 4 different possible values for 'Action'
 instance Show Action where
     show L = "Left"
     show U = "Up"
@@ -48,3 +49,11 @@ replace pos n board = reverseConcat (changeValue (getValue pos board) n (concat 
 
 swap :: Position -> Position -> Board -> Board  --tested
 swap pos1 pos2 board = replace pos2 (getValue pos1 board) $ replace pos1 (getValue pos2 board) board
+
+makeMove :: Board -> Action -> [Board]
+makeMove board action
+    | action == U = swap zeroPos (zeroPosX,zeroPosY - 1) board   --up
+    | action == D = swap zeroPos (zeroPosX,zeroPosY + 1) board   --down
+    | action == L = swap zeroPos (zeroPosX - 1,zeroPosY) board   --left
+    | action == R = swap zeroPos (zeroPosX + 1,zeroPosY) board   --right
+        where zeroPos@(zeroPosX,zeroPosY) = findEmpty board
