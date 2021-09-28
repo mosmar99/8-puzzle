@@ -10,18 +10,18 @@ by the empty space. One way to represent the movement of the tiles is to focus o
 # Sample move
 Below is a 3D representation of the game. We move the empty piece one square to the right. Then we get:
 
-X X X           X X X
-X X X  &#8594;  X X X
-0 X X           X 0 X
+- Item 4 X X X X X X 0 X X        
+
+- Item 5 X X X X X X X 0 X
 
 # Game completion
 In order to complete the game, we just have to move the empty brick on more square to the right. I.e:
 
-X X X           X X X
-X X X  &#8594;  X X X  &#8594; game completed
-X 0 X           X X 0 
+- Item 6 X X X X X X X 0 X          
+
+- Item 7 X X X X X X X X 0
 
 # File information
-&#8594; The project is Lisenced under the MIT Lisence. 
-&#8594; labTwo.hs is authored by mosmar99
-&#8594; lab2_Linus.hs is authored by Linkan42
+- Item 1 The project is Lisenced under the MIT Lisence. 
+- Item 2 labTwo.hs is authored by mosmar99
+- Item 3 lab2_Linus.hs is authored by Linkan42
