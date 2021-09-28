@@ -19,7 +19,7 @@ In order to complete the game, we just have to move the empty brick on more squa
 
 - X X X X X X X 0 X          
 
-- 7 X X X X X X X X 0
+- X X X X X X X X 0
 
 # File information
 * The project is Lisenced under the MIT Lisence. 
