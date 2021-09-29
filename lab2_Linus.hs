@@ -51,9 +51,8 @@ swap :: Position -> Position -> Board -> Board  --tested
 swap pos1 pos2 board = replace pos2 (getValue pos1 board) $ replace pos1 (getValue pos2 board) board
 
 makeMove :: Board -> Action -> [Board]
-makeMove board action
-    | action == U = swap zeroPos (zeroPosX,zeroPosY - 1) board   --up
-    | action == D = swap zeroPos (zeroPosX,zeroPosY + 1) board   --down
-    | action == L = swap zeroPos (zeroPosX - 1,zeroPosY) board   --left
-    | action == R = swap zeroPos (zeroPosX + 1,zeroPosY) board   --right
-        where zeroPos@(zeroPosX,zeroPosY) = findEmpty board
+makeMove board action = case action of U -> swap zeroPos (zeroPosX,zeroPosY - 1) board   --up
+                                       D -> swap zeroPos (zeroPosX,zeroPosY + 1) board   --down
+                                       L -> swap zeroPos (zeroPosX - 1,zeroPosY) board   --left
+                                       R -> swap zeroPos (zeroPosX + 1,zeroPosY) board   --right
+                            where zeroPos@(zeroPosX,zeroPosY) = findEmpty board
