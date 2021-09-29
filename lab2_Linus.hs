@@ -55,4 +55,4 @@ makeMove board action = case action of U -> swap zeroPos (zeroPosX,zeroPosY - 1)
                                        D -> swap zeroPos (zeroPosX,zeroPosY + 1) board   --down
                                        L -> swap zeroPos (zeroPosX - 1,zeroPosY) board   --left
                                        R -> swap zeroPos (zeroPosX + 1,zeroPosY) board   --right
-                            where zeroPos@(zeroPosX,zeroPosY) = findEmpty board
+                                    where zeroPos@(zeroPosX,zeroPosY) = findEmpty board
