@@ -5,15 +5,15 @@ type Board = [Int]
 type Position = Int --[0,8]
 type State = (Board,[Action])
 
-{-  Custom data type 'Action' which can be either L, U, R or D, using Eq typeclass to print
+{-  Custom data type 'Action' which can be either U, D, L, R, using Eq typeclass to print
     their respective values using 'show'-}
 data Action = L | U | R | D deriving Eq
 --  Create instance of 'Action' and defining the 4 different possible values for 'Action'
 instance Show Action where
-    show L = "Left"
     show U = "Up"
-    show R = "Right"
     show D = "Down"
+    show L = "Left"
+    show R = "Right"
 
 solution :: Board
 solution = [1,2,3,4,5,6,7,8,0]
@@ -39,3 +39,12 @@ makeMove board action = if not $ elem ix validPositions then [] else (swap ix (i
                                                     D -> ([0..5],3)
                                                     L -> ([1,2,4,5,7,8],(-1))
                                                     R -> ([0,1,3,4,6,7],1)
+
+allFutures :: State -> [State]  --tested
+allFutures state =
+    let state1 = (concat $ makeMove board U,U : list)
+        state2 = (concat $ makeMove board D,D : list)
+        state3 = (concat $ makeMove board L,L : list)
+        state4 = (concat $ makeMove board R,R : list)
+    in filter (\state -> fst state /= []) $ state1 : state2 : state3 : state4 : []
+        where (board,list) = state
