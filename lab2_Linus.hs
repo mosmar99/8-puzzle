@@ -48,3 +48,6 @@ allFutures state =
         state4 = (concat $ makeMove board R,R : list)
     in filter (\state -> fst state /= []) $ state1 : state2 : state3 : state4 : []
         where (board,list) = state
+
+possibleSolutions :: Board -> [[State]]
+possibleSolutions board = 
