@@ -46,12 +46,9 @@ allFutures state =
         state2 = (concat $ makeMove board D,D : list)
         state3 = (concat $ makeMove board L,L : list)
         state4 = (concat $ makeMove board R,R : list)
-    in filter (\state -> fst state /= []) $ state1 : state2 : state3 : state4 : []
+    in filter (\state -> fst state /= []) [state1,state2,state3,state4]
         where (board,list) = state
 
 possibleSolutions :: Board -> [[State]]
-possibleSolutions board
-    | isSolved board = [[]]
-    | otherwise = let starterState = (board,[])
-                      futures = (allFutures starterState) : $ map (\s -> allFutures s) $ snd s
-                  in futures
+possibleSolutions board = [(board,[])] : [f x | x <- possibleSolutions board]
+    where f list = map (\state -> allFutures state) list
