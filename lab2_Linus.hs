@@ -50,4 +50,8 @@ allFutures state =
         where (board,list) = state
 
 possibleSolutions :: Board -> [[State]]
-possibleSolutions board =
+possibleSolutions board
+    | isSolved board = [[]]
+    | otherwise = let starterState = (board,[])
+                      futures = (allFutures starterState) : $ map (\s -> allFutures s) $ snd s
+                  in futures
