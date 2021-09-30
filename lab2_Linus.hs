@@ -17,8 +17,12 @@ instance Show Action where
 
 solution :: Board
 solution = [1,2,3,4,5,6,7,8,0]
-testBoard :: Board  --temporary board to test functions
-testBoard = [2,7,0,8,5,1,3,6,4]
+
+--temporary board to test functions
+solvableBoard :: Board  
+solvableBoard = [1,2,3,0,4,6,7,5,8] --solvable in 3 steps
+nonSolvableBoard :: Board
+nonSolvableBoard = [8,1,2,0,4,3,7,6,5]
 
 isSolved :: Board -> Bool   --tested
 isSolved board = board == solution
@@ -52,5 +56,16 @@ allFutures state =
 possibleSolutions :: Board -> [[State]] --tested
 possibleSolutions board = [(board,[])] : [concat (map (\state -> allFutures state) x) | x <- possibleSolutions board]
 
---solve :: Board -> [State]
---solve board = possibleSolutions board
+solve :: Board -> [State]
+solve board = concat [xs | xs <- possibleSolutions board, x  <- xs, isSolved $ fst x] --TODO fix
+
+{-
+
+take 3 $ possibleSolutions solvableBoard
+[
+    [([1,8,2,0,4,3,7,6,5],[])],
+    [([0,8,2,1,4,3,7,6,5],[Up]),([1,8,2,7,4,3,0,6,5],[Down]),([1,8,2,4,0,3,7,6,5],[Right])],
+    [([8,0,2,1,4,3,7,6,5],[Right,Up]),([1,8,2,7,4,3,6,0,5],[Right,Down]),([1,0,2,4,8,3,7,6,5],[Up,Right]),([1,8,2,4,6,3,7,0,5],[Down,Right]),([1,8,2,4,3,0,7,6,5],[Right,Right])]
+]
+
+-}
