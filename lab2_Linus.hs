@@ -50,4 +50,4 @@ allFutures state =
         where (board,list) = state
 
 possibleSolutions :: Board -> [[State]]
-possibleSolutions board = 
+possibleSolutions board =
