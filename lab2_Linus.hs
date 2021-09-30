@@ -49,6 +49,5 @@ allFutures state =
     in filter (\state -> fst state /= []) [state1,state2,state3,state4]
         where (board,list) = state
 
-possibleSolutions :: Board -> [[State]]
-possibleSolutions board = [(board,[])] : [f x | x <- possibleSolutions board]
-    where f list = map (\state -> allFutures state) list
+possibleSolutions :: Board -> [[State]] --tested
+possibleSolutions board = [(board,[])] : [concat (map (\state -> allFutures state) x) | x <- possibleSolutions board]
