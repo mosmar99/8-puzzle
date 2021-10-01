@@ -5,10 +5,9 @@ type Board = [Int]
 type Position = Int --[0,8]
 type State = (Board,[Action])
 
-{-  Custom data type 'Action' which can be either U, D, L, R, using Eq typeclass to print
-    their respective values using 'show'-}
+{-  Custom data type 'Action' which can be either U, D, L, R, adding Eq typeclass properties, to print
+    their respective values using 'show' with our own definitions-}
 data Action = L | U | R | D deriving Eq
---  Create instance of 'Action' and defining the 4 different possible values for 'Action'
 instance Show Action where
     show U = "Up"
     show D = "Down"
@@ -17,12 +16,6 @@ instance Show Action where
 
 solution :: Board
 solution = [1,2,3,4,5,6,7,8,0]
-
---temporary board to test functions
-solvableBoard :: Board  
-solvableBoard = [1,2,3,0,4,6,7,5,8] --solvable in 3 steps
-unSolvableBoard :: Board
-unSolvableBoard = [8,1,2,0,4,3,7,6,5]
 
 isSolved :: Board -> Bool
 isSolved board = board == solution
@@ -64,3 +57,10 @@ solve board = head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs <- po
 
 [([1,8,2,0,4,3,7,6,5],[]),([1,8,2,4,0,3,7,6,5],[Right]),([1,8,2,4,6,3,7,0,5],[Down,Right]),([1,2,3,4,5,6,7,8,0],[Right,Down,Right])]
 -}
+
+--Task 11
+--[7,2,3,4,0,6,1,8,5] --> ([1,2,3,4,5,6,7,8,0],[Right,Right,Down,Down,Left,Left,Up,Right,Up,Right,Down,Left,Up,Left,Down,Down,Right,Right,Up,Left])
+--[1,8,2,0,4,3,7,6,5] --> ([1,2,3,4,5,6,7,8,0],[Right,Down,Right])
+--[1,2,3,4,5,6,7,8,0] --> ([1,2,3,4,5,6,7,8,0],[])
+
+--[8,1,2,0,4,3,7,6,5] --> not possible
