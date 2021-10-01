@@ -17,6 +17,9 @@ instance Show Action where
 solution :: Board
 solution = [1,2,3,4,5,6,7,8,-1]
 
+sT :: Board
+sT = [7,2,3,4,-1,6,1,8,5]
+
 isSolved :: Board -> Bool
 isSolved board = board == solution
 
