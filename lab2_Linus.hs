@@ -50,11 +50,12 @@ possibleSolutions :: Board -> [[State]]
 possibleSolutions board = [(board,[])] : [concat (map (\state -> allFutures state) x) | x <- possibleSolutions board]
 
 solve :: Board -> [Action]
-solve board = snd $ head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs <- possibleSolutions board] --returns the first solved board with proper actions
+solve board = snd $ head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs <- possibleSolutions board] --returns the proper actions to the first solved board it sees
 
---Task 11
---[7,2,3,4,0,6,1,8,5] --> ([1,2,3,4,5,6,7,8,0],[Right,Right,Down,Down,Left,Left,Up,Right,Up,Right,Down,Left,Up,Left,Down,Down,Right,Right,Up,Left])
---[1,8,2,0,4,3,7,6,5] --> ([1,2,3,4,5,6,7,8,0],[Right,Down,Right])
---[1,2,3,4,5,6,7,8,0] --> ([1,2,3,4,5,6,7,8,0],[])
+{-  Examples
+[7,2,3,4,0,6,1,8,5] --> [Right,Right,Down,Down,Left,Left,Up,Right,Up,Right,Down,Left,Up,Left,Down,Down,Right,Right,Up,Left]
+[1,8,2,0,4,3,7,6,5] --> [Right,Down,Right]
+[1,2,3,4,5,6,7,8,0] --> []
 
---[8,1,2,0,4,3,7,6,5] --> not possible
+[8,1,2,0,4,3,7,6,5] --> not possible
+-}
