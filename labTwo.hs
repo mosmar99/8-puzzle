@@ -17,8 +17,8 @@ instance Show Action where
 solution :: Board
 solution = [1,2,3,4,5,6,7,8,-1]
 
-sT :: Board
-sT = [7,2,3,4,-1,6,1,8,5]
+sT :: Board -- temp test
+sT = [7,2,3,4,-1,6,1,8,5] 
 
 isSolved :: Board -> Bool
 isSolved board = board == solution
@@ -52,3 +52,6 @@ allFutures state = filter (not . null . fst) $ map func options
 
 possibleSolutions :: Board -> [[State]]
 possibleSolutions board = [(board,[])] : [concatMap allFutures x | x <- possibleSolutions board]
+
+solve :: Board -> State
+solve board = head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs <- possibleSolutions board]
