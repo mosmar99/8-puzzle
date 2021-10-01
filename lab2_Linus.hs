@@ -56,6 +56,5 @@ solve board = snd $ head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs
 [7,2,3,4,0,6,1,8,5] --> [Right,Right,Down,Down,Left,Left,Up,Right,Up,Right,Down,Left,Up,Left,Down,Down,Right,Right,Up,Left]
 [1,8,2,0,4,3,7,6,5] --> [Right,Down,Right]
 [1,2,3,4,5,6,7,8,0] --> []
-
 [8,1,2,0,4,3,7,6,5] --> not possible
 -}

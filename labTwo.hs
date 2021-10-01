@@ -1,7 +1,7 @@
 import Data.List
 import Data.Maybe
 
-type Board = [Int] -- list from 0 to 8
+type Board = [Int] -- [0..8]
 type Position = Int -- index in list
 type State = (Board, [Action])
 
