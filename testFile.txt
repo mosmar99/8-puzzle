@@ -10,8 +10,8 @@ Haskell Interactive Shell (lab2_Linus.hs) λ swap 3 4 board
 Haskell Interactive Shell (lab2_Linus.hs) λ board2 = swap 4 8 board
 Haskell Interactive Shell (lab2_Linus.hs) λ board2
 [7,2,3,4,5,6,1,8,0]
-Haskell Interactive Shell (lab2_Linus.hs) λ makeMove board U
-[[7,0,3,4,2,6,1,8,5]]
+Haskell Interactive Shell (lab2_Linus.hs) λ makeMove board2 U
+[[7,2,3,4,5,0,1,8,6]]
 Haskell Interactive Shell (lab2_Linus.hs) λ makeMove board2 D
 []
 Haskell Interactive Shell (lab2_Linus.hs) λ makeMove board2 R
