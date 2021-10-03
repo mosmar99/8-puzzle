@@ -38,13 +38,12 @@ makeMove board action = if not $ elem ix validPositions then [] else (swap ix (i
                                                     R -> ([0,1,3,4,6,7],1)
 
 allFutures :: State -> [State]
-allFutures state =
+allFutures state@(board,list) =
     let state1 = if list /= [] && head list == D then state else (concat $ makeMove board U,U : list)   --if else prevents moves going back-and-forth indefinitely
         state2 = if list /= [] && head list == U then state else (concat $ makeMove board D,D : list)
         state3 = if list /= [] && head list == R then state else (concat $ makeMove board L,L : list)
         state4 = if list /= [] && head list == L then state else (concat $ makeMove board R,R : list)
     in filter (\t -> t /= state) $ filter (\s -> fst s /= []) [state1,state2,state3,state4] --outmost filter removes states identical to the paramteter (if ... then state)
-        where (board,list) = state
 
 possibleSolutions :: Board -> [[State]]
 possibleSolutions board = [(board,[])] : [concat (map (\state -> allFutures state) x) | x <- possibleSolutions board]
@@ -54,7 +53,12 @@ solve board = snd $ head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs
 
 {-  Examples
 [7,2,3,4,0,6,1,8,5] --> [Right,Right,Down,Down,Left,Left,Up,Right,Up,Right,Down,Left,Up,Left,Down,Down,Right,Right,Up,Left]
-[1,8,2,0,4,3,7,6,5] --> [Right,Down,Right]
+[0,8,2,1,4,3,7,6,5] --> [Down,Right,Up,Left,Down,Down,Right,Up,Right,Down]
 [1,2,3,4,5,6,7,8,0] --> []
+[0,1,2,3,4,5,6,7,8] --> [Right,Down,Left,Down,Right,Right,Up,Left,Left,Down,Right,Up,Up,Right,Down,Down,Left,Left,Up,Right,Right,Down]
+[3,2,7,0,4,6,5,8,1] --> [Right,Down,Down,Right,Up,Up,Left,Down,Down,Left,Up,Right,Right,Down,Left,Up,Up,Left,Down,Down,Right,Up,Right]
+[0,2,3,1,5,6,4,7,8] --> [Right,Right,Down,Down]
+[1,2,3,4,0,6,7,5,8] --> [Right,Down]
+
 [8,1,2,0,4,3,7,6,5] --> not possible
 -}

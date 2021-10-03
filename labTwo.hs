@@ -6,7 +6,7 @@ type Position = Int -- index in list
 type State = (Board, [Action])
 
 {-  Create instance of class "Action", using Eq typeclass, with 4 memberfunctions each
-    using the 'show' function to display a string depending on which function is called-}
+    using the 'show' function to display a string depending on which function is called.-}
 data Action = L | U | R | D deriving Eq
 instance Show Action where
     show L = "Left"
