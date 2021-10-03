@@ -47,5 +47,5 @@ allFutures state@(board, list) = filter (/= state) . filter (not . null . fst) .
 possibleSolutions :: Board -> [[State]]
 possibleSolutions board = [(board,[])] : [concatMap allFutures x | x <- possibleSolutions board]
 
-solve :: Board -> State
-solve board = head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs <- possibleSolutions board]
+solve :: Board -> [Action]
+solve board = snd $ head $ take 1 $ concat [[x | x <- xs, isSolved $ fst x] | xs <- possibleSolutions board] --returns the proper actions to the first solved board it sees
